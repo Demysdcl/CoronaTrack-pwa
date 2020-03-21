@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { colorNeutralTertiary } from '../../styles/variables';
 
 export const Container = styled.div`
   width: 100%;
@@ -16,4 +17,8 @@ export const Image = styled.img`
   width: 200px;
   border-radius: 50%;
   margin-bottom: 16px;
-`
+`;
+
+export const H1 = styled.h1`
+  color: ${colorNeutralTertiary};
+`;
