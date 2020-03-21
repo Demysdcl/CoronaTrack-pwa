@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colorNeutralTertiary } from '../../styles/variables';
+import { $gray500 } from '../../styles/variables';
 
 export const Container = styled.div`
   width: 100%;
@@ -20,5 +20,5 @@ export const Image = styled.img`
 `;
 
 export const H1 = styled.h1`
-  color: ${colorNeutralTertiary};
+  color: ${$gray500};
 `;
