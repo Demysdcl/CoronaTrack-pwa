@@ -1,11 +1,11 @@
-export const colorBrandPrimary = '#235DE3';
-export const colorBrandSecondary = '#ED7F2A';
+export const $brandColorPrimary = '#235DE3';
+export const $brandColorCecondary = '#ED7F2A';
 
-export const colorInfoPrimary = '#EB5757';
-export const colorInfoSecondary = '#27AE60';
+export const $colorDanger = '#EB5757';
+export const $colorSuccess = '#27AE60';
 
-export const colorNeutralPrimary = '#333333';
-export const colorNeutralSecondary = '#4F4F4F';
-export const colorNeutralTertiary = '#828282';
-export const colorNeutralQuaternary = '#BDBDBD';
-export const colorNeutralQuinary = '#E0E0E0';
+export const $gray900 = '#333333';
+export const $gray800 = '#4F4F4F';
+export const $gray700 = '#828282';
+export const $gray600 = '#BDBDBD';
+export const $gray500 = '#E0E0E0';
