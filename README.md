@@ -6,7 +6,7 @@
 
 - [Installation](#installation)
 - [Learn](#learn)
-- [Contributing](#contributing)
+- [Contribute](#Contribute)
 
 ---
 ## Installation
