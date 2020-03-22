@@ -1,3 +1,16 @@
+# CoronaTrack-PWA
+
+> This repository is dedicated to the PWA of Coronatrack, here you'll find useful information on how to help or run this repo.
+
+## Content:
+
+- [Installation](#installation)
+- [Learn](#learn)
+- [Contributing](#contributing)
+
+---
+## Installation
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -37,7 +50,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Learn
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
@@ -66,3 +79,29 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+---
+## Contribute
+
+> To get started...
+
+### step 1:
+- 👯 Clone this repo to your local machine using `https://github.com/CoronaTrack/CoronaTrack-pwa.git`
+
+### step 2:
+
+- Visit our trello board `Front End - CoronaTrack` to know which tasks are open, you'll only need to see what cards are in the `A fazer` list without any devs assigned.
+
+### step 3:
+
+- After you cloned the repo and selected a task to work on, create a new branch name it after the title of the card you're working on.
+
+### step 4:
+
+- So we all can have a better view and understanding of how you worked, try to add comments related to what you've to your commits. You can also use the checkbox in the card as a guide to that!
+
+### step 5:
+- 🔃 Create a new pull request to the `master` branch.
+
+---
+### Don't forget! *It's important to move the cards according to the lists!*
