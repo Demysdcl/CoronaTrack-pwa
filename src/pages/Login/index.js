@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 // Components
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-
 // Actions
 import { createNewUser } from '../../actions/AuthActions';
 
@@ -56,8 +55,10 @@ export default function Home() {
 
         <Button
           variant="contained"
-          background="primary"
+          theme="secondary"
+          background="#000"
           onClick={() => signUp()}
+          endIcon=""
         >
           Entrar
         </Button>
