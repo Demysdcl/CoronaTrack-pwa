@@ -86,3 +86,68 @@ export const createNewUser = (email, password, cpf) => {
     });
   };
 };
+
+export const SignInAction = (email, password) => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          const { uid } = firebase.auth().currentUser;
+
+          dispatch({
+            type: 'SET_UID',
+            payload: {
+              uid,
+            },
+          }).then(() => {
+            resolve({ success: true });
+          });
+        })
+        .catch(error => {
+          let errorMessage = '';
+          switch (error.code) {
+            case 'auth/invalid-email':
+              errorMessage = 'Email inválido!';
+              break;
+            case 'auth/user-disabled':
+              errorMessage = 'Seu usuário está desativado!';
+              break;
+            case 'auth/user-not-found':
+              errorMessage = 'Não existe este usuário!';
+              break;
+            case 'auth/wrong-password':
+              errorMessage = 'E-mail e/ou senha errados!';
+              break;
+            default:
+          }
+          reject(new Error({ error: errorMessage }));
+        });
+    });
+  };
+};
+
+export const loginWithFacebook = () => {
+  return dispatch => {
+    return new Promise((resolve, reject) => {
+      const provider = new firebase.auth.FacebookAuthProvider();
+
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function(result) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          const token = result.credential.accessToken;
+          console.log(token);
+          // The signed-in user info.
+          const { user } = result;
+          console.log(user);
+          // ...
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+  };
+};
