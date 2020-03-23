@@ -1,17 +1,15 @@
 import React from 'react';
-
 // Assets
 import logo from '../../assets/images/logo.png';
 
 // Styles
-import { Container, Content, Image } from './styles';
+import { Container, Image } from './styles';
 
 export default function Home() {
   return (
     <Container>
-      <Content>
-        <Image src={logo} alt="Logo" />
-      </Content>
+      <Image src={logo} alt="Logo" />
+      <h1>Home</h1>
     </Container>
   );
 }

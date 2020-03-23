@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Components
@@ -21,20 +21,19 @@ export default function Home() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [cpf, setCpf] = useState('');
 
   function signUp() {
-    Dispatch(createNewUser(email, password));
+    Dispatch(createNewUser(email, password, cpf))
+      .then(() => {
+        setCpf('');
+        setEmail('');
+        setPassword('');
+      })
+      .catch(() => {
+        setPassword('');
+      });
   }
-
-  useEffect(() => {
-    if (errorMessage !== '') {
-      setPassword('');
-    } else {
-      setEmail('');
-      setPassword('');
-    }
-  }, [errorMessage]);
-
   return (
     <Container>
       <Image src={logo} alt="Logo" />
@@ -52,10 +51,18 @@ export default function Home() {
           value={password}
           onChange={({ target: { value } }) => setPassword(value)}
         />
+
+        <Input
+          required
+          label="CPF"
+          value={cpf}
+          variant="outlined"
+          onChange={({ target: { value } }) => setCpf(value)}
+        />
         {errorMessage !== '' && <Error>{errorMessage}</Error>}
 
         <Button variant="contained" color="secondary" onClick={() => signUp()}>
-          Entrar
+          Cadastrar
         </Button>
       </Content>
     </Container>
