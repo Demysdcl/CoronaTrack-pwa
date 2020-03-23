@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Components
@@ -24,19 +24,16 @@ export default function Home() {
   const [cpf, setCpf] = useState('');
 
   function signUp() {
-    Dispatch(createNewUser(email, password, cpf));
+    Dispatch(createNewUser(email, password, cpf))
+      .then(() => {
+        setCpf('');
+        setEmail('');
+        setPassword('');
+      })
+      .catch(() => {
+        setPassword('');
+      });
   }
-
-  useEffect(() => {
-    if (errorMessage !== '') {
-      setPassword('');
-    } else {
-      setCpf('');
-      setEmail('');
-      setPassword('');
-    }
-  }, [errorMessage]);
-
   return (
     <Container>
       <Image src={logo} alt="Logo" />
