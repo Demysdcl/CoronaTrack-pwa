@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Components
-import Button from '@material-ui/core/Button';
+import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 // Actions
@@ -54,7 +54,11 @@ export default function Home() {
         />
         {errorMessage !== '' && <Error>{errorMessage}</Error>}
 
-        <Button variant="contained" color="secondary" onClick={() => signUp()}>
+        <Button
+          variant="contained"
+          background="primary"
+          onClick={() => signUp()}
+        >
           Entrar
         </Button>
       </Content>
