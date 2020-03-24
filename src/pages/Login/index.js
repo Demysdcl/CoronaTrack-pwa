@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FaFacebookSquare } from 'react-icons/fa';
 
 // Components
@@ -17,36 +18,37 @@ import logo from '../../assets/images/logo.png';
 import { Container, Image, Content, Error, Line } from './styles';
 
 export default function Home() {
-  const { errorMessage } = useSelector(state => state.auth);
-
   const Dispatch = useDispatch();
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  function clearAll() {
+    setEmail('');
+    setPassword('');
+    setErrorMessage('');
+  }
   function login() {
     setLoading(true);
     Dispatch(SignInAction(email, password))
-      .then(res => {
-        console.log(res);
+      .then(() => {
+        clearAll();
+        setLoading(false);
+        history.push('/');
       })
-      .catch(e => {
-        console.log(e);
+      .catch(error => {
+        setErrorMessage(error.message);
+        setPassword('');
+        setLoading(false);
       });
   }
 
   function loginFacebook() {
     Dispatch(loginWithFacebook(email, password));
   }
-  useEffect(() => {
-    if (errorMessage !== '') {
-      setPassword('');
-    } else {
-      setEmail('');
-      setPassword('');
-    }
-  }, [errorMessage]);
 
   return (
     <Container>

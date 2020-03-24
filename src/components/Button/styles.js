@@ -12,6 +12,7 @@ const primary = color => {
     backgroundColor: color,
     color: '#ffffff',
     marginBottom: '16px',
+    boxShadow: 'none',
   };
 };
 const secondary = color => {
@@ -24,6 +25,7 @@ const secondary = color => {
     color: `${color}`,
     border: `1px solid ${color}`,
     marginBottom: '16px',
+    boxShadow: 'none',
   };
 };
 

@@ -1,24 +1,38 @@
 import firebase from '../FirebaseConnection';
 
-export const verifyLogin = () => {
+export const isLogged = () => {
   return dispatch => {
-    const user = firebase.auth().currentUser;
-    if (user) {
-      dispatch({
-        type: 'SET_STATUS',
-        payload: {
-          status: 1,
-        },
-      });
-    } else {
-      dispatch({
-        type: 'SET_STATUS',
-        payload: {
-          status: 2,
-        },
-      });
-    }
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch({
+          type: 'SIGNED',
+          payload: {
+            signed: true,
+          },
+        });
+      } else {
+        dispatch({
+          type: 'SIGNED',
+          payload: {
+            signed: false,
+          },
+        });
+      }
+    });
   };
+};
+
+export const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(function() {
+      // Sign-out successful.
+      console.log('ok');
+    })
+    .catch(function(error) {
+      console.log('nonas');
+    });
 };
 
 export const setUID = uid => {
@@ -39,24 +53,18 @@ export const createNewUser = (email, password, cpf) => {
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then(({ user }) => {
+          setUID(user.uid);
           dispatch({
             type: 'SET_INFOS',
             payload: {
               email: user.email,
             },
           });
-
-          dispatch({
-            type: 'SET_ERROR',
-            payload: {
-              errorMessage: '',
-            },
-          });
           firebase
             .database()
             .ref(`Users/${user.uid}`)
             .set({ cpf });
-          resolve({ status: 'success' });
+          resolve();
         })
         .catch(error => {
           let errorMessage = '';
@@ -75,13 +83,7 @@ export const createNewUser = (email, password, cpf) => {
               break;
             default:
           }
-          dispatch({
-            type: 'SET_ERROR',
-            payload: {
-              errorMessage,
-            },
-          });
-          reject({ status: 'error' });
+          reject(new Error(errorMessage));
         });
     });
   };
@@ -96,14 +98,8 @@ export const SignInAction = (email, password) => {
         .then(() => {
           const { uid } = firebase.auth().currentUser;
 
-          dispatch({
-            type: 'SET_UID',
-            payload: {
-              uid,
-            },
-          }).then(() => {
-            resolve({ success: true });
-          });
+          setUID(uid);
+          resolve();
         })
         .catch(error => {
           let errorMessage = '';
@@ -122,7 +118,7 @@ export const SignInAction = (email, password) => {
               break;
             default:
           }
-          reject(new Error({ error: errorMessage }));
+          reject(new Error(errorMessage));
         });
     });
   };
